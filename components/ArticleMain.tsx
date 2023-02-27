@@ -28,7 +28,9 @@ const styles = {
   ArticleText: `font-mediumSerif text-[1.4rem] text-[#292929]`,
 }
 
-export default function ArticleMain() {
+export default function ArticleMain({ post, author }) {
+  console.log(author, 'author')
+  console.log(post, 'post')
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -44,9 +46,16 @@ export default function ArticleMain() {
               />
             </div>
             <div className={styles.columns}>
-              <div>Muhammad Ammar Tanweer</div>
+              <div>{author?.data?.name}</div>
               <div className={styles.postDetails}>
-                <span>June 15 * 7 min read * </span>
+                <span>
+                  {' '}
+                  {new Date(post?.data?.postedOn).toLocaleString('en-US', {
+                    day: 'numeric',
+                    month: 'short',
+                  })}
+                  , {post?.data?.postLength}min read{' '}
+                </span>
                 <span className={styles.listenButton}>
                   <AiFillPlayCircle /> Listen
                 </span>
@@ -71,35 +80,19 @@ export default function ArticleMain() {
               className={styles.Image}
             />
           </div>
-          <h1 className={styles.title}>
-            7 Free Tools That Will Make You More Productive In 2023
-          </h1>
+          <h1 className={styles.title}>{post?.data?.title}</h1>
           <h4 className={styles.subTitle}>
-            <div>Muhamamd Ammar , Feb 25, 2023</div>
-            <div>Breif: Productivty is a skill that can be learned.</div>
+            <div>
+              {author?.data?.name} ,{' '}
+              {new Date(post?.data?.postedOn).toLocaleString('en-US', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+              })}
+            </div>
+            <div>{post?.data?.brief}</div>
           </h4>
-          <div className={styles.ArticleText}>
-            Is your current social media management software really effective?
-            Do you even use appropriate social media management software, or do
-            you rely on specialized agencies like The Marketing Heaven to get
-            the job done? You may be wondering if there is another tool that is
-            easier to use, offers additional functionality, or even better value
-            for money? Or maybe you need to plan content for a platform not
-            integrated with your current tool? The right tool will save you time
-            and effectively manage your social networks so that your social
-            content strategy is really effective. It's easy to say, but how do
-            you know which social media management software is right for you?
-            The choice will be even more difficult if you have never used a
-            social media management tool. Indeed, the ideal solution can vary
-            according to needs, and it will not be the same for a novice blogger
-            as for a marketing agency offering full services. Before investing
-            your time (or money) in social media management tools, be sure to
-            choose the one that suits you best in order to immediately optimize
-            your productivity. If your requirements are very specific, it is a
-            good idea to develop your own social media management software. A
-            customized tool can help you save costs and benefit from a better
-            ROI in the long term.
-          </div>
+          <div className={styles.ArticleText}>{post?.data?.body}</div>
         </div>
       </div>
     </div>

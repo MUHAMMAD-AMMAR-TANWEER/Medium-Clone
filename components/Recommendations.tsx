@@ -65,7 +65,7 @@ export default function Recommendations() {
         <div className={styles.title}>More from Medium</div>
         <div className={styles.articleContainer}>
           {RecommendedPosts.map((post) => (
-            <div className={styles.articleContentWrapper}>
+            <div className={styles.articleContentWrapper} key={post.id}>
               <div className={styles.articleContent}>
                 <div className={styles.recommendationAuthorContainer}>
                   <div
@@ -103,6 +103,7 @@ export default function Recommendations() {
 
 const RecommendedPosts = [
   {
+    id: 1,
     title: 'What can you do with replit to boost the programming experience',
     image: ReplitLogo,
     author: {
@@ -111,6 +112,7 @@ const RecommendedPosts = [
     },
   },
   {
+    id: 2,
     title: 'How general AI can be harmful for us',
     image: Destroyer,
     author: {
@@ -119,6 +121,7 @@ const RecommendedPosts = [
     },
   },
   {
+    id: 3,
     title: 'How to become developer in 2023',
     image: Tutorial,
     author: {

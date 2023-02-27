@@ -1,7 +1,10 @@
+'use client'
 import Banner from '../components/Banner'
 import { Inter } from 'next/font/google'
 import Header from '../components/Header'
 import PostCard from '@/components/PostCard'
+import { MediumContext } from '../context/Mediumcontext'
+import { useContext } from 'react'
 
 const styles = {
   postsList: `flex flex-col gap-3 p-2 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3`,
@@ -9,7 +12,10 @@ const styles = {
   main: `flex justify-center`,
   wrapper: `mx-auto`,
 }
+
 export default function Home() {
+  const { posts } = useContext(MediumContext)
+
   return (
     <div className={styles.wrapper}>
       <Header />
@@ -17,16 +23,12 @@ export default function Home() {
       <div className={styles.main}>
         <div className={styles.container}>
           <div className={styles.postsList}>
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {posts.map((post) => (
+              <PostCard post={post} key={post.id} />
+            ))}
           </div>
         </div>
       </div>
-
-      <h1 className="text-3xl font-bold underline">
-        Hello, Next.js from Ammar!
-      </h1>
     </div>
   )
 }

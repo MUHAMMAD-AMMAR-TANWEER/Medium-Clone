@@ -1,3 +1,4 @@
+'use client'
 import SmallLogo from '../public/static/smallLogo.png'
 import { HiOutlineHome } from 'react-icons/hi'
 import { FiBell } from 'react-icons/fi'
@@ -7,7 +8,8 @@ import { BsPencilSquare } from 'react-icons/bs'
 import Ammar from '../public/static/cp.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
-
+import { useContext } from 'react'
+import { MediumContext } from '../context/Mediumcontext'
 const styles = {
   logoContainer: `cursor-pointer`,
   wrapper: `w-[5rem] h-screen flex flex-col justify-between items-center p-[1rem]`,
@@ -18,6 +20,8 @@ const styles = {
 }
 
 export default function ReadersNav() {
+  const { currentUser } = useContext(MediumContext)
+
   return (
     <div className={styles.wrapper}>
       <Link href={'/'}>
@@ -36,7 +40,7 @@ export default function ReadersNav() {
       <div className={styles.profileImageContainer}>
         <Image
           className={styles.profileImage}
-          src={Ammar}
+          src={`https://res.cloudinary.com/demo/image/fetch/${currentUser?.imageUrl}`}
           height={100}
           width={100}
           alt="Down Image"
